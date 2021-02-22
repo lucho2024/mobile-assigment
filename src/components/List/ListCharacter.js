@@ -20,11 +20,11 @@ export const ListCharacter = () => {
 
   const fecthData = async () => {
     const res = await Api.getCharacters();
-    setData(res?.results);
+    setData(res);
   };
 
   const keyExtractor = (item) => {
-    return item.item.id.toString();
+    return item.id.toString();
   };
   const renderEmpty = () => (
     <View style={styles.containerLoading}>
@@ -35,10 +35,9 @@ export const ListCharacter = () => {
   return (
     <>
       <FlatList
-        data={data}
-        horizontal={true}
+        data={data.results}
         initialNumToRender={3}
-        renderItem={({item}) => <Character />}
+        renderItem={({item}) => <Character data={item} />}
         ListEmptyComponent={() => renderEmpty()}
         extraData={refresh}
         refreshControl={
