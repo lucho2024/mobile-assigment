@@ -13,14 +13,21 @@ const App = () => {
           <Stack.Screen
             name="Feed"
             component={Feed}
-            
             options={{
               headerTintColor: 'white',
               headerStyle: {backgroundColor: '#3C68A9'},
-              headerTitleAlign:"center"
+              headerTitleAlign: 'center',
             }}
           />
-          <Stack.Screen name="Detalle" component={Detalle} />
+          <Stack.Screen
+            name="Detalle"
+            component={Detalle}
+            options={{
+              headerTintColor: 'white',
+              headerStyle: {backgroundColor: '#3C68A9'},
+              headerTitleAlign: 'center',
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>

@@ -39,7 +39,6 @@ export const ListCharacter = () => {
         initialNumToRender={3}
         renderItem={({item}) => <Character data={item} />}
         ListEmptyComponent={() => renderEmpty()}
-        extraData={refresh}
         refreshControl={
           <RefreshControl refreshing={loading} onRefresh={fecthData} />
         }
