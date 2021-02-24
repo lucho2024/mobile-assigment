@@ -3,8 +3,9 @@ import axios from 'axios';
 const BASE_URL = 'https://rickandmortyapi.com/api/';
 
 class Api {
-  getCharacters = async () => {
-    const url = `${BASE_URL}character`;
+  getCharacters = async (page) => {
+    const url = `${BASE_URL}character?page=${page}`;
+    console.log(url);
     const resultado = await axios.get(url);
 
     return resultado.data;

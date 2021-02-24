@@ -13,14 +13,22 @@ export const ListCharacter = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [refresh, setRefresh] = useState(false);
+  const [id, setId] = useState(1);
+  const [page, setPage] = useState(1);
+  const limit = 34;
 
   useEffect(() => {
     fecthData();
   }, []);
 
+  useEffect(() => {
+    fecthData();
+  }, [page]);
+
   const fecthData = async () => {
-    const res = await Api.getCharacters();
-    setData(res);
+    const res = await Api.getCharacters(page);
+    const {results} = res;
+    data.length > 0 ? setData([...data, ...results]) : setData(results);
   };
 
   const keyExtractor = (item) => {
@@ -32,11 +40,17 @@ export const ListCharacter = () => {
     </View>
   );
 
+  const endReached = () => {
+    page <= limit ? setPage(page + 1) : null;
+  };
   return (
     <>
+      {console.log(data)}
       <FlatList
-        data={data.results}
+        data={data}
         initialNumToRender={3}
+        onEndReached={endReached}
+        onEndReachedThreshold={0.5}
         renderItem={({item}) => <Character data={item} />}
         ListEmptyComponent={() => renderEmpty()}
         refreshControl={
